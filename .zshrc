@@ -1,9 +1,3 @@
-# source antidote
-source ${ZDOTDIR:-~}/.antidote/antidote.zsh
-
-# initialize plugins statically with ${ZDOTDIR:-~}/.zsh_plugins.txt
-antidote load
-
 clear
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -38,7 +32,7 @@ fpath=(path/to/zsh-completions/src $fpath)
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 #
-# alias
+# Alias
 alias update='sudo pacman -Syu ; yay -Syu ; sudo flatpak update'
 alias vim='nvim'
 alias ls='eza -l --icons'
@@ -46,11 +40,7 @@ alias reboot='sudo reboot now'
 alias shutdown='sudo shutdown now'
 #alias weather='weather --city Windsor --country Canada'
 
-source ~/powerlevel10k/powerlevel10k.zsh-theme
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
+# Auto run commands
 #colorscript random
 #cpufetch
 #colorscript random
