@@ -1,5 +1,3 @@
-clear
-
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
