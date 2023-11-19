@@ -13,3 +13,7 @@ For Gnome desktop environments run:
 ```bash
 ./gnome-setup.sh
 ```
+
+
+# Credit
+Ideas and foundation from [smittix](https://github.com/smittix/fedora-setup)
