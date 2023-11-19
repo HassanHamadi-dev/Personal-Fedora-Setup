@@ -1,3 +1,3 @@
 # Personal-Fedora-Setup
 
-# Keep Up to Date w/ wine repo url for every fedora version
+Just a quick post install script, will add more detail here later, for now the code is self explanatory.
