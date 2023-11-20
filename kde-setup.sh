@@ -12,6 +12,25 @@ cd "$script_dir" || exit 1
 
 MY_PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
 
+
+move_folder() {
+    source_folder_path="$1"
+    target_folder_path="$2"
+
+    if [ -d "$source_folder_path" ]; then
+        echo "Moving $source_folder_path to $target_folder_path"
+        mv "$source_folder_path" "$target_folder_path"
+        notify-send "$source_folder_path Moved" "$source_folder_path moved to $target_folder_path" --expire-time=10 --icon=dialog-information --urgency=low --category=system
+    else
+        notify-send "Error" "$source_folder_path not found in the repository." --expire-time=10 --icon=dialog-information --urgency=low --category=system
+    fi
+}
+
+move_folder "./.local/share/fonts" "$HOME/.local/share/"
+move_folder "./walls" "$HOME/Pictures/"
+move_folder "./alacritty" "$HOME/.config/"
+move_folder "./.zshrc" "$HOME/"
+
 HEIGHT=15
 WIDTH=40
 CHOICE_HEIGHT=6
@@ -165,24 +184,4 @@ while true; do
             echo "Invalid option"
             ;;
     esac
-
-move_folder() {
-    source_folder_path="$1"
-    target_folder_path="$2"
-
-    if [ -d "$source_folder_path" ]; then
-        echo "Moving $source_folder_path to $target_folder_path"
-        mv "$source_folder_path" "$target_folder_path"
-        notify-send "$source_folder_path Moved" "$source_folder_path moved to $target_folder_path" --expire-time=10 --icon=dialog-information --urgency=low --category=system
-    else
-        notify-send "Error" "$source_folder_path not found in the repository." --expire-time=10 --icon=dialog-information --urgency=low --category=system
-    fi
-}
-
-move_folder "./.local/share/fonts" "$HOME/.local/share/"
-move_folder "./walls" "$HOME/Pictures/"
-move_folder "./alacritty" "$HOME/.config/"
-move_folder "./.zshrc" "$HOME/"
-
-
 done
