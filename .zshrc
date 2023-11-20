@@ -18,12 +18,6 @@
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
-plugins=(zsh-completions zsh-autosuggestions)
-
-source ~/path/to/fsh/fast-syntax-highlighting.plugin.zsh
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-fpath=(path/to/zsh-completions/src $fpath)
-
 #
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
