@@ -83,14 +83,24 @@ while true; do
 
         4)
             echo "Installing Software..."
-            read -rp "This will install packages listed in gnome-dnf-packages.txt. Do you want to proceed? (y/n): " confirm
-                if [[ $confirm =~ ^[Yy]$ ]]; then
-                    sudo dnf install -y $(grep -v '^#' gnome-dnf-packages.txt | xargs -n 1 dnf list installed | awk '{print $1}' | sort | uniq)
+            package_file="$script_dir/gnome-dnf-packages.txt"
+
+            if [ -f "$package_file" ]; then
+                # Read each line from the package file and install the package
+                while IFS= read -r package; do
+                     if [ -n "$package" ]; then
+                        echo "Installing: $package"
+                        sudo dnf install -y "$package"
+                    fi
+                done < "$package_file"
+
+                echo "Installation completed."
+                source dnf-package-extra-setup.sh
+                notify-send "Software has been installed with DNF" --expire-time=10 --icon=dialog-information --urgency=low --category=system
             else
-                echo "Installation aborted."
+                echo "Error: Package file $package_file not found."
+                notify-send "Error" "Package file $package_file not found." --expire-time=10 --icon=dialog-error --urgency=low --category=system
             fi
-            source dnf-package-extra-setup.sh
-            notify-send "software has been installed w/ DNF" --expire-time=10 --icon=dialog-information --urgency=low --category=system
             ;;
         5)
             echo "Setting Up Oh-My-Zsh & Starship..."
