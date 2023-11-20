@@ -29,7 +29,7 @@ dnf check-update
 sudo dnf install code
 
 # Installing and Setting Up Wine
-dnf install wine
+sudo dnf install wine
 sudo dnf groupinstall "C Development Tools and Libraries"
 sudo dnf groupinstall "Development Tools"
 sudo dnf install wine-dxvk 
