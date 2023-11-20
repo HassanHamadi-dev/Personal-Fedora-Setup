@@ -36,7 +36,6 @@ alias vim='nvim'
 alias ls='eza -l --icons'
 alias reboot='sudo reboot now'
 alias shutdown='sudo shutdown now'
-#alias weather='weather --city Windsor --country Canada'
 
 # Auto run commands
 #colorscript random
