@@ -22,8 +22,8 @@ while true; do
                    --title "$TITLE" \
                    --menu "$MENU" \
                    $HEIGHT $WIDTH $CHOICE_HEIGHT \
-                   1 "Enable RPM Fusion" \
-                   2 "Speed Up DNF (Package Manager)" \
+                   1 "Speed Up DNF (Package Manager)" \
+                   2 "Enable RPM Fusion" \
                    3 "Update System Firmware" \
                    4 "Set up flatpak" \
                    5 "Install Software" \
@@ -36,6 +36,19 @@ while true; do
 
     case $choice in
         1)
+            echo "Speeding up DNF..."
+            echo 'defaultyes=True' | sudo tee -a /etc/dnf/dnf.conf
+            echo 'max_parallel_downloads=10' | sudo tee -a /etc/dnf/dnf.conf
+            sudo dnf install deltarpm
+            echo 'fastestmirror=true' | sudo tee -a /etc/dnf/dnf.conf
+            echo 'deltarpm=true' | sudo tee -a /etc/dnf/dnf.conf
+            sudo dnf clean all
+            sudo dnf install dnf-plugins-core
+            sudo dnf config-manager --setopt=fastestmirror=true --save
+            notify-send "DNF has been sped up" --expire-time=10 --icon=dialog-information --urgency=low --category=system
+            ;;
+            
+        2)
             echo "Enabling RPM Fusion..."
             sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
             sudo dnf upgrade --refresh
@@ -44,17 +57,7 @@ while true; do
             sudo dnf install -y dnf-plugins-core
             notify-send "RPM Fusion Enabled" --expire-time=10 --icon=dialog-information --urgency=low --category=system
             ;;
-        2)
-            echo "Speeding up DNF..."
-            echo 'max_parallel_downloads=10' | sudo tee -a /etc/dnf/dnf.conf
-            sudo dnf install deltarpm
-            echo fastestmirror=true | sudo tee -a /etc/dnf/dnf.conf
-            echo deltarpm=true | sudo tee -a /etc/dnf/dnf.conf
-            sudo dnf clean all
-            sudo dnf install dnf-plugins-core
-            sudo dnf config-manager --setopt=fastestmirror=true --save
-            notify-send "DNF has been sped up" --expire-time=10 --icon=dialog-information --urgency=low --category=system
-            ;;
+            
         3)
             echo "Updating System Firmware..."
             sudo fwupdmgr get-devices
