@@ -26,6 +26,7 @@ move_folder() {
     fi
 
 mv -f .zshrc ~/
+fc-cashe --force
 }
 
 move_folder "./.local/share/fonts" "$HOME/.local/share/"
