@@ -19,17 +19,18 @@ move_folder() {
 
     if [ -d "$source_folder_path" ]; then
         echo "Moving $source_folder_path to $target_folder_path"
-        mv "$source_folder_path" "$target_folder_path"
+        mv -f "$source_folder_path" "$target_folder_path"
         notify-send "$source_folder_path Moved" "$source_folder_path moved to $target_folder_path" --expire-time=10 --icon=dialog-information --urgency=low --category=system
     else
         notify-send "Error" "$source_folder_path not found in the repository." --expire-time=10 --icon=dialog-information --urgency=low --category=system
     fi
+
+mv -f .zshrc ~/
 }
 
 move_folder "./.local/share/fonts" "$HOME/.local/share/"
 move_folder "./walls" "$HOME/Pictures/"
 move_folder "./alacritty" "$HOME/.config/"
-move_folder "./.zshrc" "$HOME/"
 
 HEIGHT=15
 WIDTH=40
@@ -37,7 +38,6 @@ CHOICE_HEIGHT=6
 BACKTITLE="Fedora Setup Tool"
 TITLE="Please Make a Selection"
 MENU="Choose one of the following options:"
-
 
 while true; do
     choice=$(dialog --clear \
