@@ -19,3 +19,10 @@ qpwgraph
 qbittorrent
 lutris
 gamemode
+nodejs
+python3
+gcc
+kernel-devel
+gcc-c++
+automake
+make
