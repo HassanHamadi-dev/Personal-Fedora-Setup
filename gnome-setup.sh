@@ -24,12 +24,13 @@ move_folder() {
     else
         notify-send "Error" "$source_folder_path not found in the repository." --expire-time=10 --icon=dialog-information --urgency=low --category=system
     fi
+
+mv -f .zshrc ~/
 }
 
 move_folder "./.local/share/fonts" "$HOME/.local/share/"
 move_folder "./walls" "$HOME/Pictures/"
 move_folder "./alacritty" "$HOME/.config/"
-move_folder "./.zshrc" "$HOME/"
 
 HEIGHT=15
 WIDTH=40
