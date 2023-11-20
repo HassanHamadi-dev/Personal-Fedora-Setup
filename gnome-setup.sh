@@ -19,7 +19,7 @@ move_folder() {
 
     if [ -d "$source_folder_path" ]; then
         echo "Moving $source_folder_path to $target_folder_path"
-        mv "$source_folder_path" "$target_folder_path"
+        mv -f "$source_folder_path" "$target_folder_path"
         notify-send "$source_folder_path Moved" "$source_folder_path moved to $target_folder_path" --expire-time=10 --icon=dialog-information --urgency=low --category=system
     else
         notify-send "Error" "$source_folder_path not found in the repository." --expire-time=10 --icon=dialog-information --urgency=low --category=system
