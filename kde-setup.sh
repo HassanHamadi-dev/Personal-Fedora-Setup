@@ -28,13 +28,12 @@ while true; do
                    $HEIGHT $WIDTH $CHOICE_HEIGHT \
                    1 "Speed Up DNF (Package Manager)" \
                    2 "Enable RPM Fusion" \
-                   3 "Update System Firmware" \
-                   4 "Set up flatpak" \
-                   5 "Install Software" \
-                   6 "Set Up Oh-My-Zsh & Starship" \
-                   7 "Install Themes/Fonts/Codecs" \
-                   8 "Install Nvidia Drivers Akmod-Nvidia" \
-                   9 "exit" \
+                   3 "Set up flatpak" \
+                   4 "Install Software" \
+                   5 "Set Up Oh-My-Zsh & Starship" \
+                   6 "Install Themes/Fonts/Codecs" \
+                   7 "Install Nvidia Drivers Akmod-Nvidia" \
+                   8 "exit" \
                    3>&1 1>&2 2>&3)
 
 
@@ -61,16 +60,8 @@ while true; do
             sudo dnf install -y dnf-plugins-core
             notify-send "RPM Fusion Enabled" --expire-time=10 --icon=dialog-information --urgency=low --category=system
             ;;
-            
+
         3)
-            echo "Updating System Firmware..."
-            sudo fwupdmgr get-devices
-            sudo fwupdmgr refresh --force
-            sudo fwupdmgr get-updates
-            sudo fwupdmgr update
-            notify-send "System firmware has been updated" --expire-time=10 --icon=dialog-information --urgency=low --category=system
-            ;;
-        4)
             echo "Enabling Flatpak..."
             flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
             flatpak update
@@ -90,7 +81,7 @@ while true; do
             esac
             ;;
 
-        5)
+        4)
             echo "Installing Software..."
             read -rp "This will install packages listed in kde-dnf-packages.txt. Do you want to proceed? (y/n): " confirm
                 if [[ $confirm =~ ^[Yy]$ ]]; then
@@ -101,7 +92,7 @@ while true; do
             source dnf-package-extra-setup.sh
             notify-send "software has been installed w/ DNF" --expire-time=10 --icon=dialog-information --urgency=low --category=system
             ;;
-        6)
+        5)
             echo "Setting Up Oh-My-Zsh & Starship..."
             sudo dnf -y install zsh util-linux-user
             sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -111,7 +102,7 @@ while true; do
             notify-send "Oh-My-Zsh & Starship are ready to go" --expire-time=10 --icon=dialog-information --urgency=low --category=system
             ;;
 
-        7)
+        6)
             echo "Installing Themes/Fonts/Codecs..."
             rpm -i https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
             sudo dnf groupupdate -y sound-and-video
@@ -144,7 +135,7 @@ while true; do
             notify-send "Themes/Fonts/Codecs Complete" --expire-time=10 --icon=dialog-information --urgency=low --category=system   
             ;;
 
-        8)
+        7)
             echo "Installing Nvidia Drivers Akmod-Nvidia..."
             sudo dnf install -y akmod-nvidia
             # Check if the NVIDIA kernel module is loaded
@@ -155,7 +146,7 @@ while true; do
             fi
             ;;
 
-        9)
+        8)
             exit 0
             ;;
 
