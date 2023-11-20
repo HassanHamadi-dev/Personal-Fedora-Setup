@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ $(rpm -q dialog 2>/dev/null | grep -c "is not installed") -eq 1 ]; then
+sudo dnf install -y dialog
+fi
+
 # Get the directory where the script is located
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
@@ -86,8 +90,6 @@ while true; do
             esac
             ;;
 
-            notify-send "Flatpak has been set up" --expire-time=10 --icon=dialog-information --urgency=low --category=system
-            ;;
         5)
             echo "Installing Software..."
             read -rp "This will install packages listed in kde-dnf-packages.txt. Do you want to proceed? (y/n): " confirm
