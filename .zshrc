@@ -25,7 +25,7 @@
 #
 #
 # Alias
-alias update='sudo pacman -Syu ; yay -Syu ; sudo flatpak update'
+alias update='sudo pacman -Syu ; sudo flatpak update'
 alias vim='nvim'
 alias ls='eza -l --icons'
 alias reboot='sudo reboot now'
