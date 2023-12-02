@@ -12,27 +12,6 @@ cd "$script_dir" || exit 1
 
 MY_PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
 
-
-move_folder() {
-    source_folder_path="$1"
-    target_folder_path="$2"
-
-    if [ -d "$source_folder_path" ]; then
-        echo "Moving $source_folder_path to $target_folder_path"
-        mv -f "$source_folder_path" "$target_folder_path"
-        notify-send "$source_folder_path Moved" "$source_folder_path moved to $target_folder_path" --expire-time=10 --icon=dialog-information --urgency=low --category=system
-    else
-        notify-send "Error" "$source_folder_path not found in the repository." --expire-time=10 --icon=dialog-information --urgency=low --category=system
-    fi
-
-mv -f .zshrc ~/
-fc-cashe --force
-}
-
-move_folder "./.local/share/fonts" "$HOME/.local/share/"
-move_folder "./walls" "$HOME/Pictures/"
-move_folder "./alacritty" "$HOME/.config/"
-
 HEIGHT=15
 WIDTH=40
 CHOICE_HEIGHT=6
@@ -68,7 +47,7 @@ while true; do
             sudo dnf clean all
             sudo dnf install dnf-plugins-core
             sudo dnf config-manager --setopt=fastestmirror=true --save
-            notify-send "DNF has been sped up" --expire-time=10 --icon=dialog-information --urgency=low --category=system
+            notify-send "DNF has been sped up" --expire-time=10  
             ;;
             
         2)
@@ -78,7 +57,7 @@ while true; do
             sudo dnf groupupdate -y core
             sudo dnf install -y rpmfusion-free-release-tainted
             sudo dnf install -y dnf-plugins-core
-            notify-send "RPM Fusion Enabled" --expire-time=10 --icon=dialog-information --urgency=low --category=system
+            notify-send "RPM Fusion Enabled" --expire-time=10  
             ;;
 
         3)
@@ -116,7 +95,7 @@ while true; do
 
                 echo "Installation completed."
                 source dnf-package-extra-setup.sh
-                notify-send "Software has been installed with DNF" --expire-time=10 --icon=dialog-information --urgency=low --category=system
+                notify-send "Software has been installed with DNF" --expire-time=10  
             else
                 echo "Error: Package file $package_file not found."
                 notify-send "Error" "Package file $package_file not found." --expire-time=10 --icon=dialog-error --urgency=low --category=system
@@ -129,7 +108,7 @@ while true; do
             chsh -s "$(which zsh)"
             curl -sS https://starship.rs/install.sh | sh
             echo "eval "$(starship init zsh)"" >> ~/.zshrc
-            notify-send "Oh-My-Zsh & Starship are ready to go" --expire-time=10 --icon=dialog-information --urgency=low --category=system
+            notify-send "Oh-My-Zsh & Starship are ready to go" --expire-time=10  
             ;;
 
         6)
@@ -153,7 +132,7 @@ while true; do
             sudo dnf install -y iosevka-term-fonts jetbrains-mono-fonts-all gnome-shell-theme-flat-remix flat-remix-icon-theme flat-remix-theme terminus-fonts terminus-fonts-console google-noto-fonts-common mscore-fonts-all fira-code-fonts
             source gsettings.sh
             wget -qO- https://git.io/papirus-icon-theme-install | sh
-            notify-send "Themes/Fonts/Codecs Complete" --expire-time=10 --icon=dialog-information --urgency=low --category=system   
+            notify-send "Themes/Fonts/Codecs Complete" --expire-time=10     
             ;;
             
         7)
@@ -161,9 +140,9 @@ while true; do
             sudo dnf install -y akmod-nvidia
             # Check if the NVIDIA kernel module is loaded
             if lsmod | grep -q "^nvidia "; then
-                notify-send "Kernel Module Loaded" "The NVIDIA kernel module is loaded. It's safe to reboot." --expire-time=10 --icon=dialog-information --urgency=low --category=system
+                notify-send "Kernel Module Loaded" "The NVIDIA kernel module is loaded. It's safe to reboot." --expire-time=10  
             else
-                notify-send "Kernel Module Not Loaded" "The NVIDIA kernel module is not loaded yet." --expire-time=10 --icon=dialog-information --urgency=low --category=system
+                notify-send "Kernel Module Not Loaded" "The NVIDIA kernel module is not loaded yet." --expire-time=10  
             fi
             ;;
 
@@ -183,9 +162,9 @@ move_folder() {
     if [ -d "$source_folder_path" ]; then
         echo "Moving $source_folder_path to $target_folder_path"
         mv "$source_folder_path" "$target_folder_path"
-        notify-send "$source_folder_path Moved" "$source_folder_path moved to $target_folder_path" --expire-time=10 --icon=dialog-information --urgency=low --category=system
+        notify-send "$source_folder_path Moved" "$source_folder_path moved to $target_folder_path" --expire-time=10  
     else
-        notify-send "Error" "$source_folder_path not found in the repository." --expire-time=10 --icon=dialog-information --urgency=low --category=system
+        notify-send "Error" "$source_folder_path not found in the repository." --expire-time=10  
     fi
 }
 
