@@ -108,6 +108,7 @@ while true; do
             sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
             chsh -s "$(which zsh)"
             git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+            source zsh-alias.sh
             notify-send "Oh-My-Zsh & powerlevel10k are ready to go" --expire-time=10 
             ;;
 
