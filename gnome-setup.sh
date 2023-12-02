@@ -102,12 +102,12 @@ while true; do
             fi
             ;;
         5)
-            echo "Setting Up Oh-My-Zsh & Starship..."
+            echo "Setting Up Oh-My-Zsh & Powerlevel10k..."
             sudo dnf -y install zsh util-linux-user
             sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
             chsh -s "$(which zsh)"
-            curl -sS https://starship.rs/install.sh | sh
-            echo "eval "$(starship init zsh)"" >> ~/.zshrc
+            git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+            source zsh-alias.sh
             notify-send "Oh-My-Zsh & Starship are ready to go" --expire-time=10  
             ;;
 
