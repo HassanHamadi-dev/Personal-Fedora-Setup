@@ -152,6 +152,7 @@ while true; do
                 sudo dnf update -y
             sudo dnf install -y iosevka-term-fonts jetbrains-mono-fonts-all gnome-shell-theme-flat-remix flat-remix-icon-theme flat-remix-theme terminus-fonts terminus-fonts-console google-noto-fonts-common mscore-fonts-all fira-code-fonts
             source gsettings.sh
+            wget -qO- https://git.io/papirus-icon-theme-install | sh
             notify-send "Themes/Fonts/Codecs Complete" --expire-time=10 --icon=dialog-information --urgency=low --category=system   
             ;;
             
