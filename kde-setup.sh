@@ -141,6 +141,8 @@ while true; do
             cd Fluent-icon-theme/
             ./install.sh -a
 
+            wget -qO- https://git.io/papirus-icon-theme-install | sh
+
             notify-send "Themes/Fonts/Codecs Complete" --expire-time=10  
             ;;
 
